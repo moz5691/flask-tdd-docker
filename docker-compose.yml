@@ -4,7 +4,7 @@ services:
   users:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     entrypoint: ['/usr/src/app/entrypoint.sh']
     volumes:
       - .:/usr/src/app

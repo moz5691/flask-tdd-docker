@@ -7,6 +7,8 @@ RUN apk update && \
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV FLASK_ENV production
+ENV APP_SETTINGS project.config.ProductionConfig
 
 
 WORKDIR /usr/src/app
@@ -15,6 +17,8 @@ RUN pip install -r requirements.txt
 
 COPY . /usr/src/app
 
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+RUN adduser -D admin
+USER admin
+
+CMD gunicorn --bind 0.0.0.0:$PORT manage:app
 
