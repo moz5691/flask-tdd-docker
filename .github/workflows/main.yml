@@ -33,7 +33,9 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run:
         docker build --tag ${{ secrets.HEROKU_APP_NAME }} --file ./Dockerfile.prod .
-        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
+        #heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
+        docker login -u _ -p ${{ secrets.HEROKU_API_KEY }} registry.heroku.com
+        docker push ${{ secrets.HEROKU_APP_NAME }}
 
     - name: Release
       env:
