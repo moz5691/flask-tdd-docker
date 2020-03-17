@@ -31,9 +31,7 @@ jobs:
         run: docker logs flask-tdd-docker_users_1
 
       - name: Run test suite
-        env:
-          COMPOSE_INTERACTIVE_NO_CLI: 1
-        run:  docker-compose exec users pytest "project/tests" -p no:warnings
+        run:  docker-compose exec -T users pytest "project/tests" -p no:warnings
 
 
   build:
