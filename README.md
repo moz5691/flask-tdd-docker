@@ -1,5 +1,6 @@
 # Flask Docker Template
 
+![CI-CD](https://github.com/moz5691/flask-tdd-docker/workflows/CI-CD/badge.svg?branch=master)
 ## CLI (no docker)
 ```shell script
 (env)$ export FLASK_APP=project/__init__.py
