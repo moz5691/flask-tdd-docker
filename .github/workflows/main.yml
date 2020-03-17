@@ -28,7 +28,7 @@ jobs:
         run: docker ps -a
 
       - name: Check logs
-        run: docker logs users
+        run: docker logs flask-tdd-docker_users_1
 
       - name: Run test suite
         run:  docker-compose exec users pytest "project/tests" -p no:warnings
