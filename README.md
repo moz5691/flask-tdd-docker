@@ -1,5 +1,5 @@
 # Flask Docker Template
-
+---
 ![CI-CD](https://github.com/moz5691/flask-tdd-docker/workflows/CI-CD/badge.svg?branch=master)
 ## CLI (no docker)
 ```shell script
@@ -31,6 +31,9 @@ $ docker-compose exec users pytest "project/tests" -p no:warnings
 * Run the tests with coverage
 ```shell script
 $ docker-compose exec users pytest "project/tests" -p no:warnings --cov="project"
+# want to have html version
+$ docker-compose exec users pytest "project/tests" -p no:warnings --cov="project" --cov-report html
+$ open htmlcov/index.html
 ```
 
 * Lint
@@ -49,6 +52,9 @@ $ docker-compose exec users /bin/sh -c "isort project/*/*.py" --check-only
 $ docker-compose exec users black project
 $ docker-compose exec users /bin/sh -c "isort project/*/*.py"
 ```
+
+* Open http://localhost:5001/doc/ for API document(swagger)
+![alt text](./img/swagger.png)
 
 ### Pytest Tips
 ```
