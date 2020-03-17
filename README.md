@@ -1,19 +1,56 @@
+# Flask Docker Template
 
 ## CLI (no docker)
-
+```shell script
 (env)$ export FLASK_APP=project/__init__.py
 (env)$ export FLASK_ENV=development
 (env)$ python manage.py run
+```
 
-
+## Docker container instructions
+* Build and start
+```shell script
 $ docker-compose build
-
 $ docker-compose up -d
-Update container
-$ docker-compose up -d --build
+$ docker-compose up -d --build  (build and run)
+```
+* Create the database 
+```shell script
+$ docker-compose exec users python manage.py recreate_db
+```
+* Seed the database
+```shell script
+$ docker-compose exec users python manage.py seed_db
+```
+* Run the tests
+```shell script
+$ docker-compose exec users pytest "project/tests" -p no:warnings
+```
 
-Pytest
+* Run the tests with coverage
+```shell script
+$ docker-compose exec users pytest "project/tests" -p no:warnings --cov="project"
+```
 
+* Lint
+```shell script
+$ docker-compose exec users flake8 project
+```
+
+* Run Black and isort with check options
+```shell script
+$ docker-compose exec users black project --check
+$ docker-compose exec users /bin/sh -c "isort project/*/*.py" --check-only
+```
+
+* Make code changes with Black and isort
+```shell script
+$ docker-compose exec users black project
+$ docker-compose exec users /bin/sh -c "isort project/*/*.py"
+```
+
+### Pytest Tips
+```
 ### normal run
 $ docker-compose exec users pytest "project/tests"
 
@@ -40,3 +77,4 @@ $ docker-compose exec users pytest "project/tests" -l
 
 ### list the 2 slowest tests
 $ docker-compose exec users pytest "project/tests"  --durations=2
+```
