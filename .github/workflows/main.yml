@@ -37,7 +37,7 @@ jobs:
         run: docker-compose exec -T users black project --check
 
       - name: Run isort
-        run: docker-compose exec -T users isor project/**/*.py --check-only
+        run: docker-compose exec -T users bin/sh -c "isort project/**/*.py" --check-only
 
 
   build:
