@@ -66,7 +66,7 @@ def test_single_user(test_app, test_database, add_user):
 
 
 def test_single_user_incorrect_id(test_app, test_database, add_user):
-    user = add_user("king", "king@email.com")
+    _ = add_user("king", "king@email.com")
     client = test_app.test_client()
     resp = client.get("/users/999")
     data = json.loads(resp.data.decode())

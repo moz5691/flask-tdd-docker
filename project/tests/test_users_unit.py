@@ -195,8 +195,8 @@ def test_update_user(test_app, monkeypatch):
 @pytest.mark.parametrize(
     "user_id, payload, status_code, message",
     [
-        [1, {}, 400, "Input payload validation failed",],
-        [1, {"email": "me@email.com"}, 400, "Input payload validation failed",],
+        [1, {}, 400, "Input payload validation failed"],
+        [1, {"email": "me@email.com"}, 400, "Input payload validation failed"],
         [
             999,
             {"username": "me", "email": "me@email.com"},
